@@ -1,0 +1,178 @@
+{% extends 'store/base.html' %}
+
+{% load static %}
+
+
+{% block title  %}
+  Ecommerce Shop CART
+{% endblock  %}
+
+
+{% block content %}
+
+{% if not cart_items %}
+<div>
+  <br>
+  <h4 class="center"> Your Shopping Cart Is Empty </h4>
+    
+  </h1>
+  <br>
+  <p class="center">
+    Please click <a href="{% url 'store' %}">here</a> to continue shopping
+
+</div>
+
+{% else %}
+
+
+<div class="center">
+
+<h4 class="center"> Your Shopping Cart </h4>
+<p center>(Please review your
+   cart items before making your purchase.)  </p>
+  </div>
+
+  <br><br>
+<section class="container center section">
+    
+  <div class="row">
+
+    
+
+    
+
+
+
+      <div class="col s12 m12 l8">
+        <table class="cart-table">
+          <thead class="cart-title">
+            <tr>
+                <th>Your Items</th>
+                <th></th>
+                <th></th>
+                <th></th>
+                
+            </tr>
+          </thead>
+          {% for cart_item in cart_items %}
+          <tr>
+            <td>
+              <a href="cart_item.product.get_url">
+                <img src="{{cart_item.product.image.url}}" width="120" height="120"></a>
+            </td>
+            <td>
+              {{ cart_item.product.name  }}
+              <br>
+              SKU:{{ cart_item.product.id  }}
+              <br>
+              Unit Price: {{ cart_item.product.price  }}
+              <br>
+              Qty: {{ cart_item.quantity }} x {{ cart_item.product.price  }}
+            </td>
+            <td>
+              ${{ cart_item.sub_total }}
+            </td>
+            {% if cart_item.quantity < cart_item.product.stock  %}
+            <td>
+            &nbsp;<a href="{% url 'add_cart' cart_item.product.id %}"><i class="material-icons grey-text">add</i></a>
+            &nbsp;<a href="{% url 'cart_remove' cart_item.product.id %}"><i class="material-icons grey-text">remove</i></a>
+            &nbsp;<a href="{% url 'cart_remove_product' cart_item.product.id %}"><i class="material-icons grey-text">clear</i></a>
+          </td>
+          {% else %}
+          <td>
+            &nbsp;<a href="{% url 'cart_remove' cart_item.product.id %}"><i class="material-icons grey-text">remove</i></a>
+            &nbsp;<a href="{% url 'cart_remove_product' cart_item.product.id %}"><i class="material-icons grey-text">clear</i></a>
+        </td>
+          {% endif %}
+          
+        </tr>
+          {% endfor %}
+
+        </table>
+        <br><br>
+
+        <div>
+
+          <a href="{% url 'store' %}">
+            <button class=" indigo btn waves-effect waves-light left" type="submit" name="action">
+            Continue Shopping
+            
+          </button>
+          </div>
+      </div>
+
+      
+      
+
+
+
+      <div class="col s12 m12 l4">
+        <table class="cart-table">
+          <thead class="cart-title">
+            <tr>
+                <th>Checkout Items</th>
+                
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              
+              <td></td>
+              
+            </tr>
+            
+            <tr>
+              
+              <td>Checkout Total: <strong>{{ total }}</strong></td>
+              
+            </tr>
+            
+            
+          </tbody>
+        </table>
+        
+        <br><br>
+       
+       
+        <div id="paypal-button-container"></div>
+        <br><br>
+        <br><br>
+
+
+        <form class="" action="" method="POST">
+          {% csrf_token %}
+          <script src="https://checkout.stripe.com/checkout.js"
+          class="stripe-button"
+          data-key="{{ data_key }}"
+          data-amount="{{ stripe_total }}"
+          data-name="Playing Card Store"
+          data-description="{{ description }}"
+          data-locale="auto"
+          data-currency="usd"
+          data-shipping-address="true"
+          data-billing-address="true"
+          data-zip-code="true">
+          </script>
+        </form>
+  
+    
+    </div>
+
+
+
+
+    
+    
+  </div>
+    <br><br>
+
+ 
+
+  </div>
+</div>
+
+  
+</section>
+{% endif %}
+
+{% endblock  %}

@@ -1,0 +1,32 @@
+{% extends 'store/base.html' %}
+
+{% load static %}
+
+
+{% block title  %}
+  Ecommerce Shop
+{% endblock  %}
+
+
+{% block content %}
+
+
+
+
+<div class="container">
+    <h4 class="center"> Thank you for your order.  </h4>
+
+        <br><br>
+        <br><br>
+    <p>Your Order ID: <b> {{ customer_order.id }}  </b></p>
+    <br><br>
+    <p>Your order is being processed. An email confirmation will be sent to you.  </b></p>
+</div>
+  
+  
+  
+    <br><br>
+
+{% endblock  %}
+
+

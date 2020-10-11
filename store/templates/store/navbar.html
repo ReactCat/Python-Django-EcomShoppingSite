@@ -1,0 +1,76 @@
+
+
+<section>
+  <!--Navbar-->
+<nav style="min-height: 90px">
+<div class=" nav-wrapper white lighten-1 topnav">
+<div class="container">
+  <a href="/" class="brand-logo indigo-text">eshopwear</a>
+  <ul class="right hide-on-med-and-down">
+
+    <li><a class="indigo-text text-lighten-2" href="{% url 'store' %}">
+      <i class=" indigo-text material-icons right">shopping_cart
+      </i>Shopping Cart</a></li>({{ item_count }})
+
+
+  </ul>
+</div>
+
+
+
+</div>
+</nav>
+</div>
+</section>
+      <!--/.Navbar-->
+
+  <section>
+    <nav class="indigo lighten-1" role="navigation">
+      <div>
+          <div class="nav-wrapper indigo lighten-1">
+            <div class="container">
+              <a href="#" class="brand-logo logo">
+          <a href="#" class="sidenav-trigger" data-target="mobile-nav">
+              <i class="material-icons">menu</i></a>
+              <ul class="right hide-on-med-and-down">
+
+                <li><a class="white-text text-lighten-2" href="#">ENG-JPN
+                  <i class="material-icons right">keyboard_arrow_down</i></a></li>
+
+
+                    <li><a class="white-text text-lighten-2
+                        dropdown-trigger" href="#" data-target="dropdown1">Product Category
+                      <i class="material-icons right">keyboard_arrow_down</i></a></li>
+                      <li><a class="white-text text-lighten-2" href="#" >Product Info
+                        </a></li>
+
+                      <li><a class="white-text text-lighten-2" href="{% url 'contact' %}" >Contact
+                        </a></li>
+
+              </ul>
+
+              </div>
+              <ul id="dropdown1" class="white dropdown-content ">
+                <li><a class="indigo-text text-lighten-2" href="{% url 'store' %}">All Products</a></li>
+                {% for category in links %}
+                <li><a class="indigo-text text-lighten-2" href="{{ category.get_url }}">{{category.name}}</a></li>
+                {% endfor %}
+
+              </ul>
+
+          </div>
+
+      </div>
+
+  </nav>
+  <ul class="sidenav" id="mobile-nav">
+      <li><a class="indigo-text text-lighten-2" href="#">Home</a></li>
+      <li><a class="indigo-text text-lighten-2" href="#">Shopping Cart</a></li>
+      <li><a class="indigo-text text-lighten-2" href="#">Product Category</a></li>
+      <li><a class="indigo-text text-lighten-2" href="#">Product Info</a></li>
+      <li><a class="indigo-text text-lighten-2" href="#">Contact</a></li>
+
+  </ul>
+
+
+  </section>

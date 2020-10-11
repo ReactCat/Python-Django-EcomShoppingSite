@@ -1,0 +1,56 @@
+{% extends 'store/base.html' %}
+
+{% load static %}
+
+
+{% block title  %}
+  Ecommerce Shop CART
+{% endblock  %}
+
+
+{% block content %}
+
+<h4 class="center"> Product Details </h4>
+
+
+
+
+
+<section class="container section" id="photo's">
+    
+    <div class="row">
+        <div class="col s12 m10 l4">
+            <img src="{{ product.image.url }}" alt="greencards" class="responsive-img">
+        </div>
+        <div class="col s12 m8 l6">
+            <h4 class="prod_title indigo-text ">{{ product.name }}</h4>
+            <p class="prod_price"><span>$</span> {{ product.price }}</p>
+            <p class="prod_desc"> Product Description </p>
+            <p class="prod_info"> {{ product.description }} </p>
+
+            {% if product.stock <= 0 %}
+            <p class="prod_info"> Out of Stock </p>
+            {% else %}
+            <a href="{% url 'add_cart' product.id %}"> Add To Cart <a/>
+            {% endif %}
+        </div>
+
+    </div>
+
+
+</section>
+
+
+
+
+
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+
+
+
+{% endblock  %}

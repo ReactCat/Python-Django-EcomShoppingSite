@@ -1,0 +1,76 @@
+{% extends 'store/base.html' %}
+
+{% load static %}
+
+
+{% block title  %}
+  Ecommerce -New Account Setup
+
+  {% endblock  %}
+
+
+{% block content %}
+
+  {% if not form.is_valid %}
+
+  <h4 class="center"> Signup Form </h4>
+
+
+
+
+
+  
+      
+      <div class="row">
+          <div class='container center'>
+
+            <h4>Create A New Account </h4>
+                
+          
+        
+
+          <div class="col s9 m6 l5">
+              <h2 class="prod_title text-center indigo-text ">
+                  
+                <form method="post">
+                    {% csrf_token %}
+                   
+                    <button type="submit" name="button" class="btn ">Sign Up</button>
+                  </form>
+            </h2>
+     
+          </div>
+        </div>
+      </div>
+      {% else %}
+      <div>
+        <br>
+        <h1 class="product_title text-center">
+          Your account has been successfully created
+        </h1>
+        <br>
+        <div class="container">
+            <p>
+              Dear Customer,
+              <br>
+              <br>
+              Your account has been created and it is ready to use.
+              <br>
+              <a href="{% url 'store' %}">Continue shopping</a> 
+              and enjoy the variety of products that we have.
+            </p>
+        </div>
+      </div>
+
+    {% endif %}
+  </div>
+  </section>
+  
+
+
+
+
+
+
+
+{% endblock %}
